@@ -3,7 +3,7 @@
 #include <Adafruit_SSD1306.h>
 #include <BH1750.h>
 
-#define OLED_RESET 0 // GPIO22
+#define OLED_RESET 4 
 Adafruit_SSD1306 display(OLED_RESET);
 
 BH1750 light(0x23);
@@ -23,10 +23,9 @@ void loop() {
 
   if (light.begin(BH1750::CONTINUOUS_HIGH_RES_MODE)) {
     display.println("Luxmeter: ");
-    display.setTextSize(1);
     display.setCursor(40, 21);
     display.print(light.readLightLevel());
-    display.println(" lx");
+    display.println(" lux");
   } else {
     display.println("Error!");
   }
